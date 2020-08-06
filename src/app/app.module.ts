@@ -10,6 +10,8 @@ import { StatsComponent } from './components/stats/stats.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,50 @@
 <app-header></app-header>
 
+<p>User Statistics</p>
+
+<mat-table [dataSource]="staticData?.users" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="first_name">
+    <mat-header-cell *matHeaderCellDef> FIRST NAME </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.first_name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="last_name">
+    <mat-header-cell *matHeaderCellDef> LAST NAME </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.last_name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef> EMAIL </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <mat-header-cell *matHeaderCellDef> GENDER </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.gender}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ip_address">
+    <mat-header-cell *matHeaderCellDef> IP ADDRESS </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.ip_address}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="total_clicks">
+    <mat-header-cell *matHeaderCellDef> TOTAL CLICKS </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.total_clicks}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="total_page_views">
+    <mat-header-cell *matHeaderCellDef> TOTAL PAGE VIEWS </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.total_page_views}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
 <app-footer></app-footer>
