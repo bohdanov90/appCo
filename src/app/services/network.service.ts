@@ -10,16 +10,17 @@ export class NetworkService {
     private httpClient: HttpClient,
   ) {}
 
-  public getStats(page: number, limit: number): Observable<any> {
+  public getStatsData(page: number, limit: number): Observable<any> {
     return this.httpClient.get(
-      'http://localhost:3001/api/users', { params: new HttpParams()
-        .set('page', page.toString())
-        .set('limit', limit.toString())
+      'http://localhost:3001/api/users', {
+        params: new HttpParams()
+          .set('page', page.toString())
+          .set('limit', limit.toString()),
       }
     );
   }
 
-  public getCharts(id: number): Observable<any> {
+  public getChartsData(id: number): Observable<any> {
     return this.httpClient.get(`http://localhost:3001/api/statistics/${id}`);
   }
 }
