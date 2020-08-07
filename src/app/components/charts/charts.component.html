@@ -1,2 +1,29 @@
 <app-header></app-header>
+
+<div>{{ userFullName$ | async }}</div>
+
+<div> <span>Clicks</span>
+  <canvas baseChart
+    [datasets]="lineChartClicks"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [colors]="lineChartColors"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+    [plugins]="lineChartPlugins">
+  </canvas>
+</div>
+
+<div> <span>Views</span>
+  <canvas baseChart
+    [datasets]="lineChartPageViews"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [colors]="lineChartColors"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+    [plugins]="lineChartPlugins">
+  </canvas>
+</div>
+
 <app-footer></app-footer>
