@@ -11,8 +11,9 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
 import { ChartsModule } from 'ng2-charts';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
-    MaterialModule,
     ChartsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
 
 <p>User Statistics</p>
 
-<mat-table [dataSource]="staticData?.users" class="mat-elevation-z8">
+<mat-table [dataSource]="this.statsData?.users" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
@@ -46,5 +46,12 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;" (click)='onRowClick(row)'></mat-row>
 </mat-table>
+
+<mat-paginator
+  [length]='this.statsData?.pages * initialResPerPage'
+  [pageIndex]='initialNumOfPages'
+  [pageSize]='initialResPerPage'
+  [pageSizeOptions]='pageSizeOptions'>
+</mat-paginator>
 
 <app-footer></app-footer>
