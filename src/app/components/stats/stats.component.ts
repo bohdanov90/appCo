@@ -3,6 +3,9 @@ import { NetworkService } from 'src/app/services/network.service';
 import { DataService } from '../../services/data.service';
 import { tap, switchMap } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
+import { IStatsData } from 'src/app/interfaces/statsData.interface';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-stats',
@@ -10,8 +13,8 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit, AfterViewInit {
-  public statsData;
-  public displayedColumns;
+  public statsData: IStatsData;
+  public displayedColumns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public initialNumOfPages = 0;
@@ -23,7 +26,7 @@ export class StatsComponent implements OnInit, AfterViewInit {
     private dataService: DataService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.loadStatsData().subscribe();
@@ -33,14 +36,15 @@ export class StatsComponent implements OnInit, AfterViewInit {
     ).subscribe();
   }
 
-  public onRowClick(row): void {
+  public onRowClick(row: IUser): void {
     this.dataService.setUserFullName(`${row.first_name} ${row.last_name}`);
+
     this.networkService.getChartsData(row.id).pipe(
       tap(chartsData => this.dataService.setChartsData(chartsData.data)),
     ).subscribe();
   }
 
-  private loadStatsData() {
+  private loadStatsData(): Observable<IStatsData> {
     return this.networkService.getStatsData(this.paginator.pageIndex + 1, this.paginator.pageSize).pipe(
       tap(statsData => {
         this.displayedColumns = Object.keys(statsData.users[0]);

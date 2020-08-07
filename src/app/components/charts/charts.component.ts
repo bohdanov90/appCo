@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { IChartsDataDay } from '../../interfaces/chartsDataDay.interface';
 
 @Component({
   selector: 'app-charts',
@@ -8,7 +10,7 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
-   public userFullName$;
+   public userFullName$: Observable<string>;
 
   constructor(
     public dataService: DataService,
@@ -23,14 +25,14 @@ export class ChartsComponent implements OnInit {
     this.userFullName$ = this.dataService.getUserFullName$();
   }
 
-  private resetChartsConfigData() {
+  private resetChartsConfigData(): void {
     this.dataService.chartsConfig.lineChartClicks[0].data = [];
     this.dataService.chartsConfig.lineChartPageViews[0].data = [];
     this.dataService.chartsConfig.lineChartLabels = [];
   }
 
-  private setChartsConfigData(chartsData) {
-    chartsData.map(chartsDataDay => {
+  private setChartsConfigData(chartsData: IChartsDataDay[]): void {
+    chartsData.map((chartsDataDay: IChartsDataDay) => {
       this.dataService.chartsConfig.lineChartClicks[0].data = [
         ...this.dataService.chartsConfig.lineChartClicks[0].data,
         chartsDataDay.clicks
