@@ -4,25 +4,25 @@
 
 <div> <span>Clicks</span>
   <canvas baseChart
-    [datasets]="lineChartClicks"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"
-    [plugins]="lineChartPlugins">
+    [datasets]="dataService.chartsConfig.lineChartClicks"
+    [labels]="dataService.chartsConfig.lineChartLabels"
+    [options]="dataService.chartsConfig.lineChartOptions"
+    [colors]="dataService.chartsConfig.lineChartColors"
+    [legend]="dataService.chartsConfig.lineChartLegend"
+    [chartType]="dataService.chartsConfig.lineChartType"
+    [plugins]="dataService.chartsConfig.lineChartPlugins">
   </canvas>
 </div>
 
 <div> <span>Views</span>
   <canvas baseChart
-    [datasets]="lineChartPageViews"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"
-    [plugins]="lineChartPlugins">
+    [datasets]="dataService.chartsConfig.lineChartPageViews"
+    [labels]="dataService.chartsConfig.lineChartLabels"
+    [options]="dataService.chartsConfig.lineChartOptions"
+    [colors]="dataService.chartsConfig.lineChartColors"
+    [legend]="dataService.chartsConfig.lineChartLegend"
+    [chartType]="dataService.chartsConfig.lineChartType"
+    [plugins]="dataService.chartsConfig.lineChartPlugins">
   </canvas>
 </div>
 

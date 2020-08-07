@@ -40,7 +40,7 @@ export class StatsComponent implements OnInit, AfterViewInit {
     ).subscribe();
   }
 
-  public loadStatsData() {
+  private loadStatsData() {
     return this.networkService.getStatsData(this.paginator.pageIndex + 1, this.paginator.pageSize).pipe(
       tap(statsData => {
         this.displayedColumns = Object.keys(statsData.users[0]);

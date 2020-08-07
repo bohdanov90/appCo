@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-charts',
@@ -7,60 +8,41 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
-  public lineChartClicks = [{
-    data: [],
-  }];
-  public lineChartPageViews = [{
-    data: [],
-  }];
-  public lineChartLabels = [];
-  public lineChartOptions = {
-    responsive: true,
-    scales : {
-      xAxes : [{
-        gridLines : {
-          display : false
-        },
-        ticks: {
-          fontColor: 'grey',
-        },
-      }],
-      yAxes : [{
-        gridLines : {
-          color : 'grey'
-        },
-        ticks: {
-          fontColor: 'grey',
-        },
-      }],
-    },
-  };
-  public lineChartColors = [{
-    borderColor: 'blue',
-    fill: false,
-    spanGaps: true,
-  }];
-  lineChartLegend = false;
-  lineChartPlugins = [];
-  lineChartType = 'line';
-
-  public userFullName$;
+   public userFullName$;
 
   constructor(
-    private dataService: DataService,
+    public dataService: DataService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getChartsData$().subscribe(chartsData => {
-      this.lineChartClicks[0].data = [];
-      this.lineChartPageViews[0].data = [];
-      this.lineChartLabels = [];
-      chartsData.map(chartsDataDay => {
-        this.lineChartClicks[0].data = [...this.lineChartClicks[0].data, chartsDataDay.clicks];
-        this.lineChartPageViews[0].data = [...this.lineChartPageViews[0].data, chartsDataDay.page_views];
-        this.lineChartLabels = [...this.lineChartLabels, chartsDataDay.date];
-      });
-    });
+    this.dataService.getChartsData$().pipe(
+      tap(() => this.resetChartsConfigData()),
+      tap(chartsData => this.setChartsConfigData(chartsData)),
+    ).subscribe();
+
     this.userFullName$ = this.dataService.getUserFullName$();
+  }
+
+  private resetChartsConfigData() {
+    this.dataService.chartsConfig.lineChartClicks[0].data = [];
+    this.dataService.chartsConfig.lineChartPageViews[0].data = [];
+    this.dataService.chartsConfig.lineChartLabels = [];
+  }
+
+  private setChartsConfigData(chartsData) {
+    chartsData.map(chartsDataDay => {
+      this.dataService.chartsConfig.lineChartClicks[0].data = [
+        ...this.dataService.chartsConfig.lineChartClicks[0].data,
+        chartsDataDay.clicks
+      ];
+      this.dataService.chartsConfig.lineChartPageViews[0].data = [
+        ...this.dataService.chartsConfig.lineChartPageViews[0].data,
+        chartsDataDay.page_views
+      ];
+      this.dataService.chartsConfig.lineChartLabels = [
+        ...this.dataService.chartsConfig.lineChartLabels,
+        chartsDataDay.date
+      ];
+    });
   }
 }
