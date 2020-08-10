@@ -1,0 +1,223 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+  .intro {
+    width: 100vw;
+    position: relative;
+    max-height: 100vh;
+    z-index: 5;
+  }
+
+    .intro-header {
+      position: absolute;
+      top: 3vh;
+    }
+
+      .intro-header-heading {
+        font-size: 4vw;
+        line-height: 5vh;
+        color: #FFFFFF;
+        padding: 1.5vh 9vw;
+      }
+
+    .intro-img-bg {
+      width: 100vw;
+      z-index: -1;
+    }
+
+    .intro-text {
+      position: absolute;
+      padding: 14vh 9vw;
+      top: 5vh;
+      width: 50vw;
+    }
+
+      .intro-text-heading {
+        font-size: 4vw;
+        line-height: 10vh;
+        color: #FFFFFF;
+      }
+
+        .bold {
+          font-weight: bold;
+        }
+
+      .intro-text-text {
+        font-size: 1.75vw;
+        line-height: 4vh;
+        color: #FFFFFF;
+        padding: 3vh 0;
+      }
+
+      .intro-button-stats {
+        font-size: 1vw;
+        color: #3A80BA;
+        border: 1px solid white;
+        border-radius: 8px;
+        width: 10vw;
+        height: 6vh;
+        cursor: pointer;
+        padding: 2svh 0;
+      }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    z-index: 5;
+    width: 100vw;
+  }
+
+    .description-heading {
+      font-size: 2.5vw;
+      line-height: 6vh;
+      text-align: center;
+      color: #1A1A1A;
+      padding: 0 30vw;
+      text-align: center;
+    }
+
+    .description-text {
+      font-size: 1.5vw;
+      line-height: 4vh;
+      text-align: center;
+      color: #7E7E7E;
+      padding: 3vh 21vw 1vh;
+      text-align: center;
+    }
+
+    .description-benefits {
+      display: flex;
+      justify-content: space-between;
+      padding: 3vh 4vw;
+      height: 50%;
+    }
+
+      .benefit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 33vw;
+        height: 100%;
+        margin: 1vh 2vw;
+        padding: 0vh 3vw;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+        border-radius: 32px;
+      }
+
+        .benefit-img-container {
+          padding: 4vh 0;
+          height: 40%;
+        }
+
+          .benefit-img {
+            height: 100%;
+          }
+
+        .benefit-title {
+          padding: 1vh 0;
+          height: 15%;
+          font-weight: bold;
+          font-size: 1.5vw;
+          line-height: 2.5vh;
+          text-align: center;
+          color: #1A1A1A;
+        }
+
+        .benefit-description {
+          padding: 0 2vh 5vh;
+          height: 15%;
+          font-size: 1vw;
+          line-height: 2.5vh;
+          text-align: center;
+          color: #7E7E7E;
+        }
+
+  .subscription {
+    width: 100vw;
+    position: relative;
+    z-index: 5;
+  }
+
+    .subscription-img {
+      z-index: -1;
+      width: 100%;
+    }
+
+    .subscription-form {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      width: 50%;
+      height: 8vh;
+      left: 25vw;
+      bottom: 14.5vh;
+      background-color: #FFFFFF;
+      border: 1px solid #F1F1F1;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+
+      .subscription-form-input {
+        width: 75%;
+        max-height: 100%;
+        font-size: 1.25vw;
+        background: #FFFFFF;
+        color: #B9B9B9;
+        border: 1px solid #F1F1F1;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding-left: 2vw;
+      }
+
+      .subscription-form-button {
+        width: 25%;
+        max-height: 100%;
+        font-size: 1vw;
+        background-color: #3A80BA;
+        color: #FFFFFF;
+        border: 1px solid white;
+        border-radius: 8px;
+        margin: 0.25vh;
+      }
+
+    .subscription-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 9vw;
+      background: linear-gradient(90.74deg, #255D8B 1.6%, #3A80BA 96.44%);
+      position: absolute;
+      bottom: 3vh;
+    }
+
+      .subscription-footer-name {
+        font-size: 2vw;
+        line-height: 5vh;
+        color: #FFFFFF;
+      }
+
+      .subscription-footer-legal {
+        font-size: 1.25vw;
+        line-height: 4vh;
+        text-align: center;
+        color: #FFFFFF;
+      }
+
+      .subscription-footer-copy {
+        font-size: 1.25vw;
+        line-height: 4vh;
+        text-align: center;
+        color: #FFFFFF;
+      }

@@ -1,57 +1,59 @@
 <app-header></app-header>
 
-<nav>
-  <span><a name='main-page' routerLink='/main'>Main page</a></span>
-  <span> > </span>
-  <span><a>User statistics</a></span>
+<nav class="nav">
+  <span><a name='main-page' routerLink='/main' class="nav-main-page">Main page</a></span>
+  <span class="nav-arrow"> > </span>
+  <span><a class="nav-stats">User statistics</a></span>
 </nav>
 
-<h2>User statistics</h2>
+<div class="heading">User statistics</div>
 
-<mat-table [dataSource]="this.statsData?.users" class="mat-elevation-z8">
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
-  </ng-container>
+<div class="table-wrapper">
+  <table mat-table [dataSource]="this.statsData?.users" class="mat-elevation-z8 table">
+    <ng-container matColumnDef="id" class="mat-column-id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.id}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="first_name">
-    <mat-header-cell *matHeaderCellDef> FIRST NAME </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.first_name}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="first_name" class="mat-column-first_name">
+      <th mat-header-cell *matHeaderCellDef> First name </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.first_name}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="last_name">
-    <mat-header-cell *matHeaderCellDef> LAST NAME </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.last_name}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="last_name" class="mat-column-last_name">
+      <th mat-header-cell *matHeaderCellDef> Last name </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.last_name}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef> EMAIL </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="email" class="mat-column-email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.email}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="gender">
-    <mat-header-cell *matHeaderCellDef> GENDER </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.gender}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="gender" class="mat-column-gender">
+      <th mat-header-cell *matHeaderCellDef> Gender </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.gender}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="ip_address">
-    <mat-header-cell *matHeaderCellDef> IP ADDRESS </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.ip_address}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="ip_address" class="mat-column-ip_address">
+      <th mat-header-cell *matHeaderCellDef> IP address </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.ip_address}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="total_clicks">
-    <mat-header-cell *matHeaderCellDef> TOTAL CLICKS </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.total_clicks}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="total_clicks" class="mat-column-total_clicks">
+      <th mat-header-cell *matHeaderCellDef> Total clicks </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.total_clicks}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="total_page_views">
-    <mat-header-cell *matHeaderCellDef> TOTAL PAGE VIEWS </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.total_page_views}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="total_page_views" class="mat-column-total_page_views">
+      <th mat-header-cell *matHeaderCellDef> Total page views </th>
+      <td mat-cell *matCellDef="let user" class="mat-cell"> {{user.total_page_views}} </td>
+    </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)='onTableRowClick(row)'></mat-row>
-</mat-table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)='onTableRowClick(row)' class="mat-row"></tr>
+  </table>
+</div>
 
 <mat-paginator
   [length]='paginatorLength'

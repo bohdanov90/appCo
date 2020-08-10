@@ -1,39 +1,40 @@
 <app-header></app-header>
 
-<nav>
-  <span><a name='main-page' routerLink='/main'>Main page</a></span>
-  <span> > </span>
-  <span><a name='users-page' routerLink='/users'>User statistics</a></span>
-  <span> > </span>
-  <span><a> {{ userFullName$ | async }} </a></span>
+<nav class="nav">
+  <span><a name='main-page' routerLink='/main' class="nav-main-page">Main page</a></span>
+  <span class="nav-arrow"> > </span>
+  <span><a name='users-page' routerLink='/users' class="nav-users-page">User statistics</a></span>
+  <span class="nav-arrow"> > </span>
+  <span><a class="nav-user-name"> {{ userFullName$ | async }} </a></span>
 </nav>
 
-<h2> {{ userFullName$ | async }} </h2>
+<div class="heading"> {{ userFullName$ | async }} </div>
 
-<div>
-  <h3>Clicks</h3>
-  <canvas baseChart
-    [datasets]="dataService.chartsConfig.lineChartClicks"
-    [labels]="dataService.chartsConfig.lineChartLabels"
-    [options]="dataService.chartsConfig.lineChartOptions"
-    [colors]="dataService.chartsConfig.lineChartColors"
-    [legend]="dataService.chartsConfig.lineChartLegend"
-    [chartType]="dataService.chartsConfig.lineChartType"
-    [plugins]="dataService.chartsConfig.lineChartPlugins">
-  </canvas>
-</div>
-
-<div>
-  <h3>Views</h3>
-  <canvas baseChart
-    [datasets]="dataService.chartsConfig.lineChartPageViews"
-    [labels]="dataService.chartsConfig.lineChartLabels"
-    [options]="dataService.chartsConfig.lineChartOptions"
-    [colors]="dataService.chartsConfig.lineChartColors"
-    [legend]="dataService.chartsConfig.lineChartLegend"
-    [chartType]="dataService.chartsConfig.lineChartType"
-    [plugins]="dataService.chartsConfig.lineChartPlugins">
-  </canvas>
+<div class="charts">
+  <div class="chart-clicks">
+    <div class="chart-clicks-heading">Clicks</div>
+    <canvas baseChart
+      [datasets]="dataService.chartsConfig.lineChartClicks"
+      [labels]="dataService.chartsConfig.lineChartLabels"
+      [options]="dataService.chartsConfig.lineChartOptions"
+      [colors]="dataService.chartsConfig.lineChartColors"
+      [legend]="dataService.chartsConfig.lineChartLegend"
+      [chartType]="dataService.chartsConfig.lineChartType"
+      [plugins]="dataService.chartsConfig.lineChartPlugins">
+    </canvas>
+  </div>
+  <div class="chart-views">
+    <div class="chart-views-heading">Views</div>
+    <canvas baseChart
+      [datasets]="dataService.chartsConfig.lineChartPageViews"
+      [labels]="dataService.chartsConfig.lineChartLabels"
+      [options]="dataService.chartsConfig.lineChartOptions"
+      [colors]="dataService.chartsConfig.lineChartColors"
+      [legend]="dataService.chartsConfig.lineChartLegend"
+      [chartType]="dataService.chartsConfig.lineChartType"
+      [plugins]="dataService.chartsConfig.lineChartPlugins">
+    </canvas>
+  </div>
 </div>
 
 <app-footer></app-footer>

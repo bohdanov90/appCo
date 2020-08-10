@@ -7,9 +7,13 @@ export class DataService {
   public chartsConfig = {
     lineChartClicks: [{
       data: [],
+      pointBorderWidth: 3,
+      pointHoverBorderWidth: 10,
     }],
     lineChartPageViews: [{
       data: [],
+      pointBorderWidth: 3,
+      pointHoverBorderWidth: 10,
     }],
     lineChartLabels: [],
     lineChartOptions: {
@@ -20,21 +24,21 @@ export class DataService {
             display : false
           },
           ticks: {
-            fontColor: 'grey',
+            fontColor: '#CCCCCC',
           },
         }],
         yAxes : [{
           gridLines : {
-            color : 'grey'
+            color : '#F1F1F1'
           },
           ticks: {
-            fontColor: 'grey',
+            fontColor: '#CCCCCC',
           },
         }],
       },
     },
     lineChartColors: [{
-      borderColor: 'blue',
+      borderColor: '#3A80BA',
       fill: false,
       spanGaps: true,
     }],

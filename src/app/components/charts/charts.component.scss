@@ -1,0 +1,58 @@
+.nav, .heading, .charts {
+  margin: 0 4vw;
+}
+
+.nav {
+  padding: 2vh 0;
+}
+
+  .nav-main-page, .nav-users-page, .nav-arrow {
+    text-decoration: underline;
+    font-size: 1.25vw;
+    line-height: 2vh;
+    color: #CCCCCC;
+  }
+
+  .nav-arrow {
+    text-decoration: none;
+  }
+
+  .nav-user-name {
+    font-size: 1.25vw;
+    line-height: 2vh;
+    color: #3A80BA;
+    text-decoration: none;
+  }
+
+.heading {
+  font-weight: bold;
+  font-size: 2.5vw;
+  line-height: 4vh;
+  color: #1A1A1A;
+  padding: 2vh 0;
+}
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+  .chart-clicks {
+    padding-bottom: 3vh;
+    width: 95vw;
+  }
+
+  .chart-views {
+    padding-bottom: 5vh;
+    width: 95vw;
+  }
+
+    .chart-clicks-heading, .chart-views-heading {
+      font-weight: bold;
+      font-size: 1.5vw;
+      line-height: 3vh;
+      color: #1A1A1A;
+      padding: 2vh 0;
+    }
