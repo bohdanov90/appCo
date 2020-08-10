@@ -1,8 +1,8 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, takeUntil } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IStatsData } from 'src/app/interfaces/statsData.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss']
 })
-export class StatsComponent implements AfterViewInit {
+export class StatsComponent implements AfterViewInit, OnDestroy {
   public statsData: IStatsData;
   public displayedColumns: string[];
 
@@ -22,6 +22,8 @@ export class StatsComponent implements AfterViewInit {
   public pageSizeOptions = [10, 25, 50];
   public paginatorLength: number;
 
+  private onDestroy$: Subject<void> = new Subject<void>();
+
   constructor(
     private networkService: NetworkService,
     private router: Router,
@@ -30,9 +32,15 @@ export class StatsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.loadStatsData().subscribe();
 
-    this.paginator.page
-      .pipe(switchMap(() => this.loadStatsData()))
-      .subscribe();
+    this.paginator.page.pipe(
+      switchMap(() => this.loadStatsData()),
+      takeUntil(this.onDestroy$),
+    ).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   public onTableRowClick(row: IUser): void {
@@ -46,6 +54,7 @@ export class StatsComponent implements AfterViewInit {
         this.statsData = statsData;
         this.paginatorLength = this.statsData.pages * this.paginator.pageSize;
       }),
+      takeUntil(this.onDestroy$),
     );
   }
 }

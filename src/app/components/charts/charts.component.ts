@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { tap, filter, map, share } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { tap, filter, map, share, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 import { IChartsDataDay } from '../../interfaces/chartsDataDay.interface';
 import { ActivatedRoute } from '@angular/router';
 import { NetworkService } from '../../services/network.service';
@@ -14,9 +14,11 @@ import { IChartsData } from '../../interfaces/chartsData.interface';
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss']
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnDestroy {
   public userFullName$: Observable<string>;
   public id = this.activatedRoute.snapshot.params.id;
+
+  private onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
     public dataService: DataService,
@@ -27,6 +29,11 @@ export class ChartsComponent implements OnInit {
   ngOnInit(): void {
     this.displayCharts().subscribe();
     this.userFullName$ = this.getUserFullName();
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   private getUserFullName(): Observable<string> {
@@ -45,6 +52,7 @@ export class ChartsComponent implements OnInit {
       filter((chartsData: IChartsDataDay[]) => !!chartsData),
       tap(() => this.resetChartsConfigData()),
       tap((chartsData: IChartsDataDay[]) => this.setChartsConfigData(chartsData)),
+      takeUntil(this.onDestroy$),
     );
   }
 
