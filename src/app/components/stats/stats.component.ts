@@ -1,54 +1,50 @@
-import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
-import { DataService } from '../../services/data.service';
 import { tap, switchMap } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { IStatsData } from 'src/app/interfaces/statsData.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss']
 })
-export class StatsComponent implements OnInit, AfterViewInit {
+export class StatsComponent implements AfterViewInit {
   public statsData: IStatsData;
   public displayedColumns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public initialNumOfPages = 0;
   public initialResPerPage = 10;
-  public pageSizeOptions = [10, 20, 30, 40, 50];
+  public pageSizeOptions = [10, 25, 50];
+  public paginatorLength: number;
 
   constructor(
     private networkService: NetworkService,
-    private dataService: DataService,
+    private router: Router,
   ) {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.loadStatsData().subscribe();
 
-    this.paginator.page.pipe(
-      switchMap(() => this.loadStatsData()),
-    ).subscribe();
+    this.paginator.page
+      .pipe(switchMap(() => this.loadStatsData()))
+      .subscribe();
   }
 
-  public onRowClick(row: IUser): void {
-    this.dataService.setUserFullName(`${row.first_name} ${row.last_name}`);
-
-    this.networkService.getChartsData(row.id).pipe(
-      tap(chartsData => this.dataService.setChartsData(chartsData.data)),
-    ).subscribe();
+  public onTableRowClick(row: IUser): void {
+    this.router.navigate([`/user/${row.id}`]);
   }
 
   private loadStatsData(): Observable<IStatsData> {
     return this.networkService.getStatsData(this.paginator.pageIndex + 1, this.paginator.pageSize).pipe(
-      tap(statsData => {
+      tap((statsData: IStatsData) => {
         this.displayedColumns = Object.keys(statsData.users[0]);
         this.statsData = statsData;
+        this.paginatorLength = this.statsData.pages * this.paginator.pageSize;
       }),
     );
   }
